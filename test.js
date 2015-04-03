@@ -14,16 +14,32 @@ describe("map", function() {
 		mapped.should.not.have.property("z");
 	}
 
+	function convertKey(k) {
+		var m = { "x": "a", "y": "b", "z": "c" };
+		return m[k];
+	}
+
 	it('should return { "a": 1, "b": "2, "c": 3 } when given ({"x": 1, "y": 2, "z": 3}, { "x": "a", "y": "b", "z": "c" }) ' , function() {
 		validateMapped(map({"x": 1, "y": 2, "z": 3}, { "x": "a", "y": "b", "z": "c" }));
 	});
 
 	it('should return { "a": 1, "b": "2, "c": 3 } when given ({"x": 1, "y": 2, "z": 3}, convertKey)', function() {
-		function convertKey(k) {
-			var m = { "x": "a", "y": "b", "z": "c" };
-			return m[k];
-		}
+
 		validateMapped(map({"x": 1, "y": 2, "z": 3}, convertKey));
+	});
+
+	it('should return { "a": 1, "b": "2, "c": 3 } when given ({"x": 1, "y": 2, "z": 3}, { "x": "a", "y": "b", "z": "c" }, ["x", "y"]) ' , function() {
+		var mapped = map({"x": 1, "y": 2, "z": 3}, { "x": "a", "y": "b", "z": "c" }, ["x", "y"]);
+		mapped.should.have.property("a");
+		mapped.a.should.equal(1);
+		mapped.should.not.have.property("c");
+	});
+
+	it('should return {"a": 1, "b": 2} when given ({"x": 1, "y": 2, "z": 3}, convertKey, ["x", "y"])', function() {
+		var mapped = map({"x": 1, "y": 2, "z": 3}, convertKey, ["x", "y"]);
+		mapped.should.have.property("a");
+		mapped.a.should.equal(1);
+		mapped.should.not.have.property("c");
 	});
 
 	it('should return { "a": 1 } when given ({"x": 1, "y", 2}, { "x": "a" })', function() {
@@ -38,22 +54,26 @@ describe("map", function() {
 
 	it('should return {"a": 1, "b": null} when given ({"x": 1, "y": null}, { "x": "a", "y": "b" })', function(){
 		var mapped = map({"x": 1, "y": null}, { "x": "a", "y": "b" });
-		mapped.should.have.property("b").and.to.be.null;
+		mapped.should.have.property("b");
+		should.equal(mapped.b, null);
 	});
 
 	it('should return {"a": 1, "b": null} when given ({ "x": 1 }, { "x": "a", "y": "b" })', function(){
 		var mapped = map({"x": 1}, { "x": "a", "y": "b" });
-		mapped.should.have.property("b").and.to.be.null;
+		mapped.should.have.property("b");
+		should.equal(mapped.b, null);
 	});
 
 
 	it('should return {"a": 1, "b": null} when given ({ "x": 1, "y": undefined }, { "x": "a", "y": "b" })', function(){
 		var mapped = map({"x": 1}, { "x": "a", "y": "b" });
-		mapped.should.have.property("b").and.to.be.null;
+		mapped.should.have.property("b");
+		should.equal(mapped.b, null);
 	});
 
 	it('should return {"a": 1, "b": null} when given ({"x": 1, "y": 2}, function(k) { return k === "x" ? "a" : null; })', function() {
 		var mapped = map({"x": 1, "y": 2}, function(k) { return k === "x" ? "a" : null; });
-		mapped.should.have.property("y").and.to.be.null;
+		mapped.should.have.property("y");
+		should.equal(mapped.y, null);
 	});
 });
