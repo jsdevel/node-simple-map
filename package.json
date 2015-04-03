@@ -1,0 +1,27 @@
+{
+  "name": "simple-map",
+  "version": "0.0.1",
+  "description": "A super simple utility for mapping one object to another using key-value pairs or a function.",
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "~2.2.1",
+    "chai": "~2.2.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/c-williams/simple-map.git"
+  },
+  "keywords": [
+    "map",
+    "object",
+    "object-mapper"
+  ],
+  "author": "Christian Williams <wilcosprey@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c-williams/simple-map/issues"
+  }
+}
