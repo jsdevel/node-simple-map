@@ -1,4 +1,9 @@
+function noop(k) {
+	return k;
+}
+
 function map(obj, kmap, include) {
+	kmap = kmap || noop;
 	var ret = {};
 	var including = !!include;
 	if ( typeof(kmap) === 'function' ) {
