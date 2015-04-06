@@ -5,7 +5,7 @@ function noop(k) {
 function map(obj, kmap, include) {
 	kmap = kmap || noop;
 	var ret = {};
-	var including = !!include;
+	var including = !!include && include.constructor === Array;
 	if ( typeof(kmap) === 'function' ) {
 		for( var p in obj ) {
 			if(!including || include.indexOf(p) > -1) {
@@ -26,5 +26,11 @@ function map(obj, kmap, include) {
 	}
 	return ret;
 }
+
+map.make = function(converter, include) {
+	return function(target) {
+		return map(target, converter, include);
+	};
+};
 
 module.exports = map;

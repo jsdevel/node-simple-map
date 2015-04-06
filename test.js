@@ -76,4 +76,44 @@ describe("map", function() {
 		mapped.should.have.property("y");
 		should.equal(mapped.y, null);
 	});
+
+	describe('#make', function() {
+		it('should close around the given map object and return a curried function that returns the same value as the map function when invoked', function() {
+			var m = { 'x': 'a' };
+			var made = map.make(m);
+			var testObject = {'x': 1};
+			var madeMapped = made(testObject);
+			var mapMapped = map(testObject, m);
+			made.should.be.a('function');
+			madeMapped.should.have.property('a');
+			madeMapped.a.should.equal(testObject.x);
+			madeMapped.a.should.equal(mapMapped.a);
+		});
+
+		it('should close around the given map function and return a curried function that returns the same value as the map function when invoked', function() {
+			var m = function(v) { return v === 'x' ? 'a' : undefined; };
+			var made = map.make(m);
+			var testObject = {'x': 1};
+			var madeMapped = made(testObject);
+			var mapMapped = map(testObject, m);
+			made.should.be.a('function');
+			madeMapped.should.have.property('a');
+			madeMapped.a.should.equal(testObject.x);
+			madeMapped.a.should.equal(mapMapped.a);
+		});
+
+		it('should close around the given map object and include array and return a curried function that returns the same value as the map function when invoked', function() {
+			var m = { 'x': 'a', 'y': 'b', 'z': 'c' };
+			var inc = ['x', 'y'];
+			var made = map.make(m, inc);
+			var testObject = {'x': 1, 'y': 2, 'z': 3};
+			var madeMapped = made(testObject);
+			var mapMapped = map(testObject, m, inc);
+			made.should.be.a('function');
+			madeMapped.should.have.property('b');
+			madeMapped.b.should.equal(testObject.y);
+			madeMapped.b.should.equal(mapMapped.b);
+			madeMapped.should.not.have.property('c');
+		});		
+	});
 });

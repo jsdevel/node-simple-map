@@ -1,6 +1,6 @@
 {
   "name": "simple-map",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A super simple utility for mapping one object to another using key-value pairs or a function.",
   "main": "index.js",
   "devDependencies": {

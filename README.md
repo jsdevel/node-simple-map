@@ -55,6 +55,14 @@ In some cases, its useful to map with a function, but restrict to only specific 
 
     map(person, convertKey, ["first_name", "last_name"]); // { "FIRSTNAME": "John", "LASTNAME": "Doe" }
 
+### map.make
+
+`map.make` is super useful. It creates a curried function with an enclosed map and include list. You can use this with array#map to map objects within a collection.
+
+	var peopleRecords = [{"first_name": "John", "last_name": "Doe", "password", "a"}];
+	var personMapper = map.make(convertKey, ['first_name', 'last_name']);
+	var dtos = peopleRecords.map(personMapper);
+
 ### install
 
 	npm install simple-map
