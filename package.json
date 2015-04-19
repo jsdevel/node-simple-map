@@ -1,6 +1,6 @@
 {
   "name": "simple-map",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "A super simple utility for mapping one object to another using key-value pairs or a function.",
   "main": "index.js",
   "devDependencies": {
@@ -12,16 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wilcosprey/simple-map.git"
+    "url": "https://github.com/xtianwill/node-simple-map.git"
   },
   "keywords": [
     "map",
     "object",
     "object-mapper"
   ],
-  "author": "Christian Williams <wilcosprey@gmail.com>",
+  "author": "Christian Williams <xtianwill79@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wilcosprey/simple-map/issues"
+    "url": "https://github.com/xtianwill/node-simple-map/issues"
   }
 }
