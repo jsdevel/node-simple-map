@@ -1,5 +1,5 @@
 var should = require('chai').should();
-var map = require('../simple-map');
+var map = require('./');
 
 describe("map", function() {
 	function validateMapped(mapped) {
